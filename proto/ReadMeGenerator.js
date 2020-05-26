@@ -1,94 +1,119 @@
-( function ()
+'use strict';
+
+const _ = require( 'wTools' );
+require( 'wFiles' );
+require( 'warraysorted' );
+
+const columns = require( './SortOrder' );
+
+const readMeColumnTitles = {
+  npmName : 'Module',
+  binding : 'Binding',
+  solvesSLE : 'Solves SLE',
+  dependants : 'Dependants',
+  supportsNodejs : 'Node.js',
+  supportsBrowser : 'Browser',
+}
+
+let columnTitlesRow = `|№|${readMeColumnTitles.npmName}|`;
+let subColumnTitlesRow = '|:-:|:-:|';
+
+columns.forEach( ( column ) =>
 {
-  'use strict';
+  columnTitlesRow += readMeColumnTitles[ column ] + '|';
+  subColumnTitlesRow += ':--:|';
+} );
 
-  const _ = require( 'wTools' );
-  require( 'wFiles' );
-  require( 'warraysorted' );
+let mainContent = `
+### Public general purpose math modules
+${columnTitlesRow}
+${subColumnTitlesRow}`;
 
-  const sortTable = require( './SortTable' );
-  const createRow = require( './CreateRow' );
-  const columns = require( './SortingOrder' );
+let data = _.fileProvider.fileRead
+( {
+  filePath : abs( '../data/GeneralPurpose.yml' ),
+  encoding : 'yaml',
+} );
 
-  function abs() { return _.path.s.join( __dirname, ... arguments ) }
-
-  let columnTitleRow = '|№|';
-  let subColumnTitleRow = '|:-:|';
-  columns.forEach( ( column ) =>
-  {
-    columnTitleRow += column.readMeTitle + '|';
-    subColumnTitleRow += ':--:|'
-  } );
-
-  let mainContent = `
-### Public general purpose math modules  
-${columnTitleRow}
-${subColumnTitleRow}`;
-
-  let data = _.fileProvider.fileRead( {
-    filePath : abs( '../data/GeneralPurpose.yml' ),
-    encoding : 'yaml',
-  } );
-
-  let sortedData = sortTable( data, columns );
-
-  sortedData.forEach( ( lib, index ) =>
-  {
-    mainContent += `
+data.forEach( ( lib, index ) =>
+{
+  mainContent += `
 ${createRow( columns, lib, index )}`;
 } );
 
 
 mainContent += `
-### Public special purpose math modules  
-${columnTitleRow}
-${subColumnTitleRow}
+
+### Public special purpose math modules
+${columnTitlesRow}
+${subColumnTitlesRow}
 `;
 
-  data = _.fileProvider.fileRead( {
-    filePath : abs( '../data/Special.yml' ),
-    encoding : 'yaml',
-  } );
+data = _.fileProvider.fileRead
+( {
+  filePath : abs( '../data/Special.yml' ),
+  encoding : 'yaml',
+} );
 
-  sortedData = sortTable( data, columns );
-
-  sortedData.forEach( ( lib, index ) =>
-  {
-    mainContent += `${createRow( columns, lib, index )}
+data.forEach( ( lib, index ) =>
+{
+  mainContent += `${createRow( columns, lib, index )}
 `;
-  } );
+} );
 
-  mainContent += `
+mainContent += `
 ### Public symbolic expression math modules
-${columnTitleRow}
-${subColumnTitleRow}
+${columnTitlesRow}
+${subColumnTitlesRow}
 `;
 
-  data = _.fileProvider.fileRead( {
-    filePath : abs( '../data/SymbolicExpression.yml' ),
-    encoding : 'yaml',
-  } );
+data = _.fileProvider.fileRead
+( {
+  filePath : abs( '../data/SymbolicExpression.yml' ),
+  encoding : 'yaml',
+} );
 
-  sortedData = sortTable( data, columns );
+data.forEach( ( lib, index ) =>
+{
+  mainContent += `${createRow( columns, lib, index )}
+`;
+} );
 
-  sortedData.forEach( ( lib, index ) =>
+const title = _.fileProvider.fileRead
+( {
+  filePath : abs( '../doc/title.md' )
+} );
+
+const links = _.fileProvider.fileRead
+( {
+  filePath : abs( '../doc/resources.md' ),
+} );
+
+_.fileProvider.fileWrite
+( {
+  filePath : abs( '../README.md' ),
+  data : title + mainContent + links
+} );
+
+console.log( 'ReadMe is created!' );
+
+function abs() { return _.path.s.join( __dirname, ... arguments ) }
+
+function createRow( columns, lib, index )
+{
+  'use strict';
+
+  let row = `|${index + 1}|[${lib.npmName}](${lib.repoUri})|`;
+
+  columns.forEach( ( column ) =>
   {
-    mainContent += `${createRow( columns, lib, index )}
-`;
-  } );
+    if( lib[ column ] === true )
+      row += '+|';
+    else if( lib[ column ] === false )
+      row += '-|';
+    else
+      row += `${lib[ column ]}|`;
+  } )
 
-  const title = _.fileProvider.fileRead( {
-    filePath : abs( '../doc/title.md' )
-  } );
-
-  const links = _.fileProvider.fileRead( {
-    filePath : abs( '../doc/resources.md' ),
-  } );
-
-  _.fileProvider.fileWrite( {
-    filePath : abs( '../README.md' ),
-    data : title + mainContent + links
-  } );
-
-  console.log( 'ReadMe created!' );
-} )();
+  return row;
+}
