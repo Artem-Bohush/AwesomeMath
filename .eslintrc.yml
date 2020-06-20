@@ -129,9 +129,9 @@ rules :
     - max : 3
   max-len :
     - error
-    -
-      code : 130
+    - code : 130
       comments : 130
+      ignoreComments : true
       ignoreUrls : true
       ignoreStrings : true
       ignoreRegExpLiterals : true
@@ -184,7 +184,7 @@ rules :
   no-labels : error
   no-lone-blocks : error
   no-lonely-if : off
-  no-loop-func : error
+  no-loop-func : off
   no-magic-numbers : off
   no-mixed-operators : off
   no-mixed-requires : error
@@ -304,7 +304,7 @@ rules :
     - single
     - allowTemplateLiterals : true
   radix : off
-  require-atomic-updates : error
+  require-atomic-updates : off
   require-await : off
   require-unicode-regexp : off
   rest-spread-spacing :
@@ -356,7 +356,7 @@ rules :
     - allman
     - allowSingleLine : true
   space-in-parens :
-    - error
+    - warn
     - always
     - exceptions : [ 'empty' ]
     # - exceptions : [ 'empty', '{}' ]
@@ -401,7 +401,7 @@ rules :
   require-jsdoc : off
   max-statements-per-line : off
   max-statements :
-    - error
+    - warn
     - max : 100
   complexity :
     - error

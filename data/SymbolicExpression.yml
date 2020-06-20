@@ -2,7 +2,7 @@
   repoUri: 'https://github.com/josdejong/mathjs'
   binding: false
   solvesSLE: true
-  dependants: 979
+  dependants: 987
   supportsNodejs: true
   supportsBrowser: true
 - npmName: '@yaffle/expression'
@@ -10,6 +10,20 @@
   binding: false
   solvesSLE: true
   dependants: 0
+  supportsNodejs: true
+  supportsBrowser: true
+- npmName: expr-eval
+  repoUri: 'https://github.com/silentmatt/expr-eval'
+  binding: false
+  solvesSLE: false
+  dependants: 87
+  supportsNodejs: true
+  supportsBrowser: true
+- npmName: hot-formula-parser
+  repoUri: 'https://github.com/handsontable/formula-parser'
+  binding: false
+  solvesSLE: false
+  dependants: 55
   supportsNodejs: true
   supportsBrowser: true
 - npmName: algebra.js
@@ -49,6 +63,13 @@
   supportsBrowser: true
 - npmName: metadelta
   repoUri: 'https://github.com/metadelta/metadelta'
+  binding: false
+  solvesSLE: false
+  dependants: 0
+  supportsNodejs: true
+  supportsBrowser: true
+- npmName: newtonmath.js
+  repoUri: 'https://github.com/benpryke/NewtonMath.js'
   binding: false
   solvesSLE: false
   dependants: 0

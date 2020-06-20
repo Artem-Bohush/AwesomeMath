@@ -2,7 +2,7 @@
   repoUri: 'https://github.com/tensorflow/tfjs'
   binding: true
   solvesSLE: true
-  dependants: 163
+  dependants: 165
   supportsNodejs: true
   supportsBrowser: true
 - npmName: vectorious
@@ -26,15 +26,15 @@
   dependants: 1
   supportsNodejs: true
   supportsBrowser: false
-- npmName: vectorious-plus
-  repoUri: 'https://github.com/ukrbublik/vectorious-plus'
+- npmName: node-julia
+  repoUri: 'https://github.com/waTeim/node-julia'
   binding: true
   solvesSLE: true
   dependants: 0
   supportsNodejs: true
-  supportsBrowser: true
-- npmName: blasjs
-  repoUri: 'https://github.com/jacobbogers/blasjs'
+  supportsBrowser: false
+- npmName: vectorious-plus
+  repoUri: 'https://github.com/ukrbublik/vectorious-plus'
   binding: true
   solvesSLE: true
   dependants: 0
@@ -47,13 +47,13 @@
   dependants: 0
   supportsNodejs: true
   supportsBrowser: false
-- npmName: node-julia
-  repoUri: 'https://github.com/waTeim/node-julia'
+- npmName: blasjs
+  repoUri: 'https://github.com/jacobbogers/blasjs'
   binding: true
   solvesSLE: true
   dependants: 0
   supportsNodejs: true
-  supportsBrowser: false
+  supportsBrowser: true
 - npmName: '@stdlib/stdlib'
   repoUri: 'https://github.com/stdlib-js/stdlib'
   binding: true
@@ -100,7 +100,7 @@
   repoUri: 'https://github.com/josdejong/mathjs'
   binding: false
   solvesSLE: true
-  dependants: 979
+  dependants: 987
   supportsNodejs: true
   supportsBrowser: true
 - npmName: lalgebra
@@ -149,7 +149,7 @@
   repoUri: 'https://github.com/toji/gl-matrix'
   binding: false
   solvesSLE: false
-  dependants: 414
+  dependants: 416
   supportsNodejs: true
   supportsBrowser: true
 - npmName: dstructs-matrix
@@ -164,6 +164,13 @@
   binding: false
   solvesSLE: false
   dependants: 66
+  supportsNodejs: true
+  supportsBrowser: true
+- npmName: sylvester
+  repoUri: 'https://github.com/NaturalNode/node-sylvester'
+  binding: false
+  solvesSLE: false
+  dependants: 43
   supportsNodejs: true
   supportsBrowser: true
 - npmName: numjs
@@ -187,6 +194,13 @@
   dependants: 8
   supportsNodejs: true
   supportsBrowser: true
+- npmName: lib-r-math.js
+  repoUri: 'https://github.com/R-js/libRmath.js'
+  binding: false
+  solvesSLE: false
+  dependants: 3
+  supportsNodejs: true
+  supportsBrowser: true
 - npmName: vec-la-fp
   repoUri: 'https://github.com/francisrstokes/vec-la-fp'
   binding: false
@@ -201,8 +215,22 @@
   dependants: 2
   supportsNodejs: true
   supportsBrowser: true
+- npmName: algebra
+  repoUri: 'https://github.com/fibo/algebra'
+  binding: false
+  solvesSLE: false
+  dependants: 1
+  supportsNodejs: true
+  supportsBrowser: true
 - npmName: vec-la
   repoUri: 'https://github.com/francisrstokes/vec-la'
+  binding: false
+  solvesSLE: false
+  dependants: 0
+  supportsNodejs: true
+  supportsBrowser: true
+- npmName: insect
+  repoUri: 'https://github.com/sharkdp/insect'
   binding: false
   solvesSLE: false
   dependants: 0
